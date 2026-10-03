@@ -1,0 +1,44 @@
+#Problem:Remove Linked List Elements
+#Link:https://leetcode.com/problems/remove-linked-list-elements/submissions/2160997501/
+#Difficulty:Easy
+
+Given the head of a linked list and an integer val, remove all the nodes of the linked list that has Node.val == val, and return the new head.
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        if(head==nullptr)
+          return head;
+
+        ListNode *temp=head;
+        ListNode *del;
+        while(head!=NULL&& head->val==val)
+        {
+            head=head->next;
+        }
+        while(temp!=nullptr && temp->next!=nullptr)
+        {
+            if(temp->next->val==val)
+            {
+                del=temp->next;
+                temp->next=temp->next->next;
+                delete del;
+            }
+            else 
+            {
+                temp=temp->next;
+            }
+        }
+        return head;
+    }
+};
